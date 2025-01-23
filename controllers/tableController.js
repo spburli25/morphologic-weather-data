@@ -1,3 +1,4 @@
+//table controller to handle rendering of table data
 export class TableController {
   _element;
 
