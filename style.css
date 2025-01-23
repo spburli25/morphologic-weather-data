@@ -6,6 +6,7 @@ main {
     padding-top: 2rem;
 }
 
+/* Loading spinner styles */
 .loading {
     width: 48px;
     height: 48px;

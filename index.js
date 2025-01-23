@@ -1,3 +1,5 @@
+//index.js
+
 import { TableController } from "./controllers/tableController.js";
 
 const tableController = new TableController();
