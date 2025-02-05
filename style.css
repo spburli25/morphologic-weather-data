@@ -6,6 +6,38 @@ main {
     padding-top: 2rem;
 }
 
+/* Container styles */
+header {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Location dropdown styles */
+#locations {
+    width: auto;
+    min-width: 200px;
+    max-width: 300px;
+}
+
+/* Table container styles */
+.table-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto;
+    box-shadow: inset -10px 0 10px -10px rgba(0, 0, 0, 0.1);
+}
+
+.table-container  > p {
+    padding-left: 7rem;
+  }
+
+/* Table styles */
+.table {
+    margin-top: 1rem;
+    width: 100%;
+    white-space: nowrap;
+}
+
 /* Loading spinner styles */
 .loading {
     width: 48px;
@@ -26,3 +58,44 @@ main {
         transform: rotate(360deg);
     }
 } 
+
+/* Tab styles */
+.nav-tabs {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-tabs .nav-link {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+.nav-tabs .nav-link:hover {
+    border-color: #e9ecef #e9ecef #dee2e6;
+    background-color: #f8f9fa;
+}
+
+.nav-tabs .nav-link.active {
+    color: #495057;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+
+#metrics-container {
+    padding: 1rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.table thead th {
+    position: sticky;
+    background-color: white;
+    z-index: 1;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #f8f9fa;
+}

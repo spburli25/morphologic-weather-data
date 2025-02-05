@@ -18,12 +18,36 @@
       <h1>Meteo Office</h1>
       <label class="form-label" for="locations">Locations</label>
       <select class="form-select" name="locations" id="locations"></select>
+      <div id="metrics-container" class="mt-3">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="temperature" value="temperature_2m" checked>
+          <label class="form-check-label" for="temperature">Temperature</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="precipitation" value="precipitation" checked>
+          <label class="form-check-label" for="precipitation">Precipitation</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="windspeed" value="windspeed_10m">
+          <label class="form-check-label" for="windspeed">Wind Speed</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="humidity" value="relativehumidity_2m">
+          <label class="form-check-label" for="humidity">Humidity</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="cloudcover" value="cloudcover">
+          <label class="form-check-label" for="cloudcover">Cloud Cover</label>
+        </div>
+      </div>
     </header>
     <main>
+      <div id="loading-spinner" class="text-center" style="display: none;">
+        <span class="loading"></span>
+        <p>Loading weather data...</p>
+      </div>
       <div id="table-container"></div>
     </main>
-
     <script type="module" src="index.js"></script>
-    <!-- Added script for main functionality -->
   </body>
 </html>

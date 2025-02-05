@@ -1,5 +1,3 @@
-//index.js
-
 import { TableController } from "./controllers/tableController.js";
 
 const tableController = new TableController();
@@ -20,29 +18,56 @@ function getLocationSelect() {
 
 function setLocations() {
   const locationSelect = getLocationSelect();
-
   for (const [key, value] of Object.entries(LOCS)) {
     const newOption = new Option(key, key);
     locationSelect.add(newOption, undefined);
   }
-  // set value blank initially
   locationSelect.value = "";
 }
 
-function onSelectChange(e) {
-  // select coordinates based on select value
-  const coords = LOCS[e.target.value];
+function showLoading() {
+  document.getElementById('loading-spinner').style.display = 'block';
+  document.getElementById('table-container').style.display = 'none';
+}
 
-  // api call to https://open-meteo.com/en/docs
+function hideLoading() {
+  document.getElementById('loading-spinner').style.display = 'none';
+  document.getElementById('table-container').style.display = 'block';
+}
+
+function getSelectedMetrics() {
+  const checkboxes = document.querySelectorAll('#metrics-container input:checked');
+  return Array.from(checkboxes).map(cb => cb.value);
+}
+
+function onSelectChange(e) {
+  if (!e.target.value) return;
+  
+  const coords = LOCS[e.target.value];
+  const selectedMetrics = getSelectedMetrics();
+  
+  showLoading();
+  
   fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.long}&hourly=temperature_2m`
+    `https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.long}&hourly=${selectedMetrics.join(',')}`
   )
-    .then((response) => {
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((data) => {
       tableController.renderData(data);
+      hideLoading();
+    })
+    .catch((error) => {
+      console.error('Error fetching weather data:', error);
+      hideLoading();
+      document.getElementById('table-container').innerHTML = '<p>Error loading weather data. Please try again.</p>';
     });
+}
+
+function onMetricsChange() {
+  const locationSelect = getLocationSelect();
+  if (locationSelect.value) {
+    onSelectChange({ target: locationSelect });
+  }
 }
 
 function init() {
@@ -50,8 +75,13 @@ function init() {
 
   const locationSelect = getLocationSelect();
   locationSelect.addEventListener("change", onSelectChange);
+  
+  const checkboxes = document.querySelectorAll('#metrics-container input');
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', onMetricsChange);
+  });
 
   tableController.renderPlaceholder();
 }
 
-// init();
+init();

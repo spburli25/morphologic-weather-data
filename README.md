@@ -38,3 +38,7 @@ Our users would like to customise their weather metric view.
 - Pick at least 5 metrics from the open-meteo api
 - Display these as checkboxes in a row under the location select box
 - Refetch the table data as needed to get the selected metrics
+
+
+User Update:
+Install http-server and run the HTML file with it to avoid CORS issues.
